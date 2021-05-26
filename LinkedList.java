@@ -1,19 +1,37 @@
 package chap09;
-// ¿¬°á¸®½ºÆ® Å¬·¡½º
+
+import java.util.Comparator;
+
+// ì—°ê²°ë¦¬ìŠ¤íŠ¸ í´ë˜ìŠ¤
 
 public class LinkedList<E> {
-	// ³ëµå
+	// ë…¸ë“œ
 	class Node<E> {
-		private E data; // µ¥ÀÌÅÍ
-		private Node<E> data; // µÚÂÊ Æ÷ÀÎÅÍ (´ÙÀ½ ³ëµå ÂüÁ¶)
+		private E data; // ë°ì´í„°
+		private Node<E> data; // ë’¤ìª½ í¬ì¸í„° (ë‹¤ìŒ ë…¸ë“œ ì°¸ì¡°)
 		
-		// »ı¼ºÀÚ
+		// ìƒì„±ì
 		Node(E data, Node<E> next) {
 			this.data = data;
 			this.next = next;
 		}
 	}
 	
-	private Node<E> head; // ¸Ó¸® ³ëµå
-	private Node<E> crnt; // ¼±ÅÃ ³ëµå
+	private Node<E> head; // ë¨¸ë¦¬ ë…¸ë“œ
+	private Node<E> crnt; // ì„ íƒ ë…¸ë“œ
+	
+	//ë…¸ë“œ ê²€ìƒ‰
+	public E search(E obj, Comparator<? super E> c) {
+		Node<E> ptr = head; // í˜„ì¬ ìŠ¤ìº” ì¤‘ì¸ ë…¸ë“œ
+		
+		while (ptr != null) {
+			if(c.compare(obj, ptr.data) == 0) { // ê²€ìƒ‰ ì„±ê³µ
+				crnt = ptr;
+				return ptr.data;
+			}
+			ptr = ptr.next; // ë‹¤ìŒ ë…¸ë“œë¥¼ ì„ íƒ
+		}
+		
+		return null; //ê²€ìƒ‰ ì‹¤íŒ¨
+	}
 }
