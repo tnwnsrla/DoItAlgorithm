@@ -34,4 +34,29 @@ public class LinkedList<E> {
 		
 		return null; //검색 실패
 	}
+	
+	// 노드 p를 삭제
+	public void remove(Node p) {
+		if(head != null) {
+			if (p == head) { // p가 머리노드면
+				removeFirst(); // 머리 노드를 삭제
+			} else {
+				Node<E> ptr = head;
+				
+				while (ptr.next != p) {
+					ptr = ptr.next;
+					if(ptr == null) {
+						return; // p가 리스트에 없습니다.
+					}
+				}
+				ptr.next = p.next;
+				crnt = ptr;
+			}
+		}
+	}
+	
+	//선택 노드를 삭제
+		public void removeCurrentNode() {
+			remove(crnt);
+		}
 }
