@@ -59,4 +59,41 @@ public class LinkedList<E> {
 		public void removeCurrentNode() {
 			remove(crnt);
 		}
+		
+	// 모든 노드를 삭제
+		public void clear() {
+			while (head != null) { // 노드에 아무것도 없을 때까지
+				removeFirst(); // 머리노드를 삭제
+			}
+			crnt = null;
+		}
+		
+		// 선택 노드를 하나 뒤쪽으로 이동
+		public boolean next() {
+			if(crnt == null || crnt.next == null) {
+				return false; // 이동할 수 없음
+			}
+			crnt = crnt.next;
+			return true;
+		}
+		
+		// 선택 노드를 출력
+		public void printCurrentNode() {
+			if(crnt == null) {
+				System.out.println("선택한 노드가 업습니다.");
+			} else {
+				System.out.println(crnt.data);
+			}
+			
+		}
+		
+		// 모든 노드를 출력
+		public void dump() {
+			Node<E> ptr = head;
+			
+			while(ptr != null) {
+				System.out.println(ptr.data);
+				ptr = ptr.next;
+			}
+		}
 }
